@@ -239,26 +239,26 @@ DWORD MainProc(PDONUT_INSTANCE inst) {
       mod = (PDONUT_MODULE)&inst->module.x;
     }
     
-    // try bypassing AMSI, WLDP, and ETW?
-    if(inst->bypass != DONUT_BYPASS_NONE) {
-      // Try to disable AMSI
-      disabled = DisableAMSI(inst);
-      DPRINT("DisableAMSI %s", disabled ? "OK" : "FAILED");
-      if(!disabled && inst->bypass == DONUT_BYPASS_ABORT) 
-        goto erase_memory;
+    // // try bypassing AMSI, WLDP, and ETW?
+    // if(inst->bypass != DONUT_BYPASS_NONE) {
+    //   // Try to disable AMSI
+    //   disabled = DisableAMSI(inst);
+    //   DPRINT("DisableAMSI %s", disabled ? "OK" : "FAILED");
+    //   if(!disabled && inst->bypass == DONUT_BYPASS_ABORT) 
+    //     goto erase_memory;
       
-      // Try to disable WLDP
-      disabled = DisableWLDP(inst);
-      DPRINT("DisableWLDP %s", disabled ? "OK" : "FAILED");
-      if(!disabled && inst->bypass == DONUT_BYPASS_ABORT) 
-        goto erase_memory;
+    //   // Try to disable WLDP
+    //   disabled = DisableWLDP(inst);
+    //   DPRINT("DisableWLDP %s", disabled ? "OK" : "FAILED");
+    //   if(!disabled && inst->bypass == DONUT_BYPASS_ABORT) 
+    //     goto erase_memory;
 
-      // Try to disable ETW
-      disabled = DisableETW(inst);
-      DPRINT("DisableETW %s", disabled ? "OK" : "FAILED");
-      if (!disabled && inst->bypass == DONUT_BYPASS_ABORT)
-          goto erase_memory;
-    }
+    //   // Try to disable ETW
+    //   disabled = DisableETW(inst);
+    //   DPRINT("DisableETW %s", disabled ? "OK" : "FAILED");
+    //   if (!disabled && inst->bypass == DONUT_BYPASS_ABORT)
+    //       goto erase_memory;
+    // }
     
     // module is compressed?
     if(mod->compress != DONUT_COMPRESS_NONE) {
